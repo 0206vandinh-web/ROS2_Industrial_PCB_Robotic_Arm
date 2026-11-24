@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eu
+cd "$(dirname "$0")/.."
+while true; do
+ read -rp '[a]自动 [s]单步 [p]阶段末暂停 [c]继续 [t]示教记录 [e]急停 [v]状态 [q]退出 > ' key || exit
+ case "$key" in
+ a) action=auto;; s) action=step;; p) action=pause;; c) action=resume;; t) action=teach;; e) action=estop;;
+ v) tools/cell ros2 topic echo /c3/status --once;continue;; q) exit;; *) continue;;
+ esac
+ tools/cell ros2 service call "/c3/$action" std_srvs/srv/Trigger '{}'
+done

@@ -1,0 +1,1 @@
+{"name":"PCB_SOFT_START","fixture":[0.30,0.015,0.0985],"good":[0.20,0.20,0.080],"infeed":[0.235,-0.18,0.080],"lift":0.052,"speed":0.42,"accel":1.0,"hold_s":0.90,"use_arc":true}

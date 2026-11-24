@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -eu
+flags=(-i);if [[ -t 0 && -t 1 ]];then flags+=(-t);fi
+exec podman exec "${flags[@]}" c3-harmonic bash -c 'source tools/env.bash && exec "$@"' c3 "$@"

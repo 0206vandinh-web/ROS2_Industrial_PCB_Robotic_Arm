@@ -1,0 +1,2163 @@
+<sdf version="1.9">
+  <world name="c3">
+    <physics name="step_1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics" />
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands" />
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster" />
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact" />
+    <light name="key" type="directional">
+      <direction>-.4 .3 -1</direction>
+      <diffuse>.95 .95 .95 1</diffuse>
+    </light>
+    <scene>
+      <ambient>.68 .70 .73 1</ambient>
+      <background>.72 .77 .81 1</background>
+    </scene>
+    <gui fullscreen="false">
+      <plugin filename="MinimalScene" name="3D View">
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <camera_pose>1.18 -1.25 .93 0 .44 2.25</camera_pose>
+        <gz-gui>
+          <property type="string" key="state">docked</property>
+        </gz-gui>
+      </plugin>
+      <plugin filename="WorldControl" name="WorldControl" />
+      <plugin filename="GzSceneManager" name="GzSceneManager" />
+      <plugin filename="InteractiveViewControl" name="InteractiveViewControl" />
+      <plugin filename="EntityContextMenuPlugin" name="EntityContextMenuPlugin" />
+    </gui>
+    <model name="arm">
+      <self_collide>true</self_collide>
+      <link name="base">
+        <pose relative_to="__model__">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0.04 0 0 0</pose>
+          <mass>2</mass>
+          <inertia>
+            <ixx>0.004333333333333334</ixx>
+            <iyy>0.004333333333333334</iyy>
+            <izz>0.006533333333333335</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="base_visual_0">
+          <pose>0 0 0.037 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.073</radius>
+              <length>0.074</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="base_collision_0">
+          <pose>0 0 0.037 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.073</radius>
+              <length>0.074</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>base_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="mount" type="fixed">
+        <parent>world</parent>
+        <child>base</child>
+      </joint>
+      <link name="l1">
+        <pose relative_to="base">0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0.0825 0 0 0</pose>
+          <mass>1.25</mass>
+          <inertia>
+            <ixx>0.0035363541666666672</ixx>
+            <iyy>0.0030468750000000005</iyy>
+            <izz>0.0009113541666666666</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="l1_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.041</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="l1_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.041</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>l1_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l1_visual_1">
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03198</radius>
+              <length>0.165</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="l1_collision_1">
+          <pose>0 0 0.0825 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03198</radius>
+              <length>0.165</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_1" type="contact">
+          <contact>
+            <collision>l1_collision_1</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l1_visual_2">
+          <pose>0 0 0.078 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.061</radius>
+              <length>0.027</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <visual name="l1_visual_3">
+          <pose>0 0 0.13 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.048</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="j1" type="revolute">
+        <parent>base</parent>
+        <child>l1</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.9670597283903604</lower>
+            <upper>2.9670597283903604</upper>
+            <effort>35</effort>
+            <velocity>1.8</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="l2">
+        <pose relative_to="l1">0 0 0.165 1.570796327 0 0</pose>
+        <inertial>
+          <pose>0.1025 0 0 0 0 0</pose>
+          <mass>1.1</mass>
+          <inertia>
+            <ixx>0.0008103333333333335</ixx>
+            <iyy>0.004046258333333333</iyy>
+            <izz>0.004468658333333333</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="l2_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.041</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="l2_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.041</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>l2_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l2_visual_1">
+          <pose>0.1025 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03198</radius>
+              <length>0.205</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="l2_collision_1">
+          <pose>0.1025 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03198</radius>
+              <length>0.205</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_1" type="contact">
+          <contact>
+            <collision>l2_collision_1</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l2_visual_2">
+          <pose>0 0 -0.021 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.04182</radius>
+              <length>0.008</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_3">
+          <pose>0 0 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.018860000000000002</radius>
+              <length>0.009</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_4">
+          <pose>0.03075 0 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_5">
+          <pose>0.015375 0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_6">
+          <pose>-0.015375 0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_7">
+          <pose>-0.03075 3.765788907e-18 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_8">
+          <pose>-0.015375 -0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_9">
+          <pose>0.015375 -0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_10">
+          <pose>0 0 0.021 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.04182</radius>
+              <length>0.008</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_11">
+          <pose>0 0 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.018860000000000002</radius>
+              <length>0.009</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_12">
+          <pose>0.03075 0 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_13">
+          <pose>0.015375 0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_14">
+          <pose>-0.015375 0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_15">
+          <pose>-0.03075 3.765788907e-18 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_16">
+          <pose>-0.015375 -0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_17">
+          <pose>0.015375 -0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_18">
+          <pose>0.0328 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03321</radius>
+              <length>0.013</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l2_visual_19">
+          <pose>0.1722 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03321</radius>
+              <length>0.013</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="j2" type="revolute">
+        <parent>l1</parent>
+        <child>l2</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.356194490192345</lower>
+            <upper>2.356194490192345</upper>
+            <effort>35</effort>
+            <velocity>1.8</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="l3">
+        <pose relative_to="l2">0.205 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0.085 0 0 0 0 0</pose>
+          <mass>0.78</mass>
+          <inertia>
+            <ixx>0.0005746000000000001</ixx>
+            <iyy>0.0020160400000000006</iyy>
+            <izz>0.0023155600000000004</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="l3_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.041</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="l3_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.041</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <collide_bitmask>1</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>l3_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l3_visual_1">
+          <pose>0.085 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03198</radius>
+              <length>0.17</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="l3_collision_1">
+          <pose>0.085 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03198</radius>
+              <length>0.17</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <collide_bitmask>1</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name="contact_1" type="contact">
+          <contact>
+            <collision>l3_collision_1</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l3_visual_2">
+          <pose>0 0 -0.021 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.04182</radius>
+              <length>0.008</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_3">
+          <pose>0 0 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.018860000000000002</radius>
+              <length>0.009</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_4">
+          <pose>0.03075 0 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_5">
+          <pose>0.015375 0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_6">
+          <pose>-0.015375 0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_7">
+          <pose>-0.03075 3.765788907e-18 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_8">
+          <pose>-0.015375 -0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_9">
+          <pose>0.015375 -0.02663028117 -0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_10">
+          <pose>0 0 0.021 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.04182</radius>
+              <length>0.008</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_11">
+          <pose>0 0 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.018860000000000002</radius>
+              <length>0.009</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_12">
+          <pose>0.03075 0 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_13">
+          <pose>0.015375 0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_14">
+          <pose>-0.015375 0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_15">
+          <pose>-0.03075 3.765788907e-18 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_16">
+          <pose>-0.015375 -0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_17">
+          <pose>0.015375 -0.02663028117 0.026 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.0024</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_18">
+          <pose>0.0272 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03321</radius>
+              <length>0.013</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l3_visual_19">
+          <pose>0.1428 0 0 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.03321</radius>
+              <length>0.013</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+      </link>
+      <joint name="j3" type="revolute">
+        <parent>l2</parent>
+        <child>l3</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.6179938779914944</lower>
+            <upper>2.6179938779914944</upper>
+            <effort>35</effort>
+            <velocity>1.8</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="l4">
+        <pose relative_to="l3">0.17 0 0 1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.25</mass>
+          <inertia>
+            <ixx>8.816666666666666e-05</ixx>
+            <iyy>8.627083333333333e-05</iyy>
+            <izz>8.627083333333333e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="l4_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.023</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l4_visual_1">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02116</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="l4_collision_1">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02116</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <collide_bitmask>2</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name="contact_1" type="contact">
+          <contact>
+            <collision>l4_collision_1</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="j4" type="revolute">
+        <parent>l3</parent>
+        <child>l4</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.9670597283903604</lower>
+            <upper>2.9670597283903604</upper>
+            <effort>35</effort>
+            <velocity>1.8</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="l5">
+        <pose relative_to="l4">0 0 0 -1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.17</mass>
+          <inertia>
+            <ixx>5.9953333333333334e-05</ixx>
+            <iyy>5.866416666666667e-05</iyy>
+            <izz>5.866416666666667e-05</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="l5_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.023</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l5_visual_1">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02116</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="l5_collision_1">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.02116</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <collide_bitmask>4</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name="contact_1" type="contact">
+          <contact>
+            <collision>l5_collision_1</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="j5" type="revolute">
+        <parent>l4</parent>
+        <child>l5</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-2.181661564992912</lower>
+            <upper>2.181661564992912</upper>
+            <effort>35</effort>
+            <velocity>1.8</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="l6">
+        <pose relative_to="l5">0 0 0 1.570796327 0 0</pose>
+        <inertial>
+          <pose>0 0 0.0625 0 0 0</pose>
+          <mass>0.31</mass>
+          <inertia>
+            <ixx>0.00045830916666666664</ixx>
+            <iyy>0.00045595833333333333</iyy>
+            <izz>0.00010697583333333333</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="l6_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.023</radius>
+              <length>0.035</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="l6_visual_1">
+          <pose>0 0 0.035 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.023</radius>
+              <length>0.07</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="l6_collision_1">
+          <pose>0 0 0.035 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.023</radius>
+              <length>0.07</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <collide_bitmask>8</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name="contact_1" type="contact">
+          <contact>
+            <collision>l6_collision_1</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <visual name="l6_visual_2">
+          <pose>0 0 0.083 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.061 0.075 0.028</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="l6_collision_2">
+          <pose>0 0 0.083 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.061 0.075 0.028</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <collide_bitmask>8</collide_bitmask>
+            </contact>
+          </surface>
+        </collision>
+        <sensor name="contact_2" type="contact">
+          <contact>
+            <collision>l6_collision_2</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="j6" type="revolute">
+        <parent>l5</parent>
+        <child>l6</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-3.0543261909900767</lower>
+            <upper>3.0543261909900767</upper>
+            <effort>35</effort>
+            <velocity>1.8</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="tcp">
+        <pose relative_to="l6">0 0 0.125 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.002</mass>
+          <inertia>
+            <ixx>1.3333333333333335e-09</ixx>
+            <iyy>1.3333333333333335e-09</iyy>
+            <izz>1.3333333333333335e-09</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+      </link>
+      <joint name="tcp_joint" type="fixed">
+        <parent>l6</parent>
+        <child>tcp</child>
+      </joint>
+      <link name="camera_mount">
+        <pose relative_to="l6">0.043 0 0.075 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>0.018</mass>
+          <inertia>
+            <ixx>9.374999999999999e-07</ixx>
+            <iyy>9.374999999999999e-07</iyy>
+            <izz>1.2e-06</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="camera_mount_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.015</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <collision name="camera_mount_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.02 0.02 0.015</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>camera_mount_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="camera_mount_joint" type="fixed">
+        <parent>l6</parent>
+        <child>camera_mount</child>
+      </joint>
+      <link name="left">
+        <pose relative_to="l6">0 0.018 0.099 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0.01 0 0 0</pose>
+          <mass>0.024</mass>
+          <inertia>
+            <ixx>1.872e-06</ixx>
+            <iyy>2e-06</iyy>
+            <izz>2.72e-07</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="left_visual_0">
+          <pose>0 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01 0.006 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <collision name="left_collision_0">
+          <pose>0 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01 0.006 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>left_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="left_joint" type="prismatic">
+        <parent>l6</parent>
+        <child>left</child>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.016</upper>
+            <effort>15</effort>
+            <velocity>0.08</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="right">
+        <pose relative_to="l6">0 -0.018 0.099 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0.01 0 0 0</pose>
+          <mass>0.024</mass>
+          <inertia>
+            <ixx>1.872e-06</ixx>
+            <iyy>2e-06</iyy>
+            <izz>2.72e-07</izz>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyz>0</iyz>
+          </inertia>
+        </inertial>
+        <visual name="right_visual_0">
+          <pose>0 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01 0.006 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <collision name="right_collision_0">
+          <pose>0 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.01 0.006 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.65</mu>
+                <mu2>0.65</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="contact_0" type="contact">
+          <contact>
+            <collision>right_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+      </link>
+      <joint name="right_joint" type="prismatic">
+        <parent>l6</parent>
+        <child>right</child>
+        <axis>
+          <xyz>0 -1 0</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0.016</upper>
+            <effort>15</effort>
+            <velocity>0.08</velocity>
+          </limit>
+          <dynamics>
+            <damping>0.035</damping>
+            <friction>0.008</friction>
+          </dynamics>
+        </axis>
+      </joint>
+    </model>
+    <model name="bench">
+      <static>true</static>
+      <pose>0.12 0 -0.025 0 0 0</pose>
+      <link name="body">
+        <visual name="bench_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.05 0.85 0.05</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <collision name="bench_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.05 0.85 0.05</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="leg1">
+      <static>true</static>
+      <pose>-0.33 -0.35 -0.38 0 0 0</pose>
+      <link name="body">
+        <visual name="leg1_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="leg1_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="leg2">
+      <static>true</static>
+      <pose>-0.33 0.35 -0.38 0 0 0</pose>
+      <link name="body">
+        <visual name="leg2_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="leg2_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="leg3">
+      <static>true</static>
+      <pose>0.57 -0.35 -0.38 0 0 0</pose>
+      <link name="body">
+        <visual name="leg3_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="leg3_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="leg4">
+      <static>true</static>
+      <pose>0.57 0.35 -0.38 0 0 0</pose>
+      <link name="body">
+        <visual name="leg4_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="leg4_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.045 0.045 0.72</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="floor">
+      <static>true</static>
+      <pose>0 0 -0.78 0 0 0</pose>
+      <link name="body">
+        <visual name="floor_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5 5 0.06</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.42 .46 .49 1</diffuse>
+            <ambient>.42 .46 .49 1</ambient>
+          </material>
+        </visual>
+        <collision name="floor_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>5 5 0.06</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="infeed">
+      <static>true</static>
+      <pose>0.235 -0.18 0.038 0 0 0</pose>
+      <link name="body">
+        <visual name="infeed_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.105 0.085 0.076</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="infeed_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.105 0.085 0.076</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="infeed_visual_1">
+          <pose>0 -0.041 0.041 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.104 0.003 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="infeed_visual_2">
+          <pose>0 0.041 0.041 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.104 0.003 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="infeed_visual_3">
+          <pose>-0.043 -0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="infeed_visual_4">
+          <pose>-0.043 0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="infeed_visual_5">
+          <pose>0.043 -0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="infeed_visual_6">
+          <pose>0.043 0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="screw_nest">
+      <static>true</static>
+      <pose>0.3 0.015 0.0475 0 0 0</pose>
+      <link name="body">
+        <visual name="screw_nest_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.105 0.085 0.095</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <collision name="screw_nest_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.105 0.085 0.095</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="screw_nest_visual_1">
+          <pose>0 -0.041 0.0505 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.104 0.003 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="screw_nest_visual_2">
+          <pose>0 0.041 0.0505 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.104 0.003 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="screw_nest_visual_3">
+          <pose>-0.043 -0.033 0.0485 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="screw_nest_visual_4">
+          <pose>-0.043 0.033 0.0485 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="screw_nest_visual_5">
+          <pose>0.043 -0.033 0.0485 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="screw_nest_visual_6">
+          <pose>0.043 0.033 0.0485 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="good_tray">
+      <static>true</static>
+      <pose>0.2 0.2 0.038 0 0 0</pose>
+      <link name="body">
+        <visual name="good_tray_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.105 0.085 0.076</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="good_tray_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.105 0.085 0.076</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="good_tray_visual_1">
+          <pose>0 -0.041 0.041 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.104 0.003 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="good_tray_visual_2">
+          <pose>0 0.041 0.041 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.104 0.003 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="good_tray_visual_3">
+          <pose>-0.043 -0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="good_tray_visual_4">
+          <pose>-0.043 0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="good_tray_visual_5">
+          <pose>0.043 -0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="good_tray_visual_6">
+          <pose>0.043 0.033 0.039 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.003</radius>
+              <length>0.003</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="conveyor">
+      <static>true</static>
+      <pose>0.235 -0.32 0.039 0 0 0</pose>
+      <link name="body">
+        <visual name="conveyor_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.12 0.16 0.078</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="conveyor_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.12 0.16 0.078</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="conveyor_visual_1">
+          <pose>0 -0.069 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="conveyor_visual_2">
+          <pose>0 -0.046 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="conveyor_visual_3">
+          <pose>0 -0.023 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="conveyor_visual_4">
+          <pose>0 0 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="conveyor_visual_5">
+          <pose>0 0.023 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="conveyor_visual_6">
+          <pose>0 0.046 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <visual name="conveyor_visual_7">
+          <pose>0 0.069 0.042 0 1.570796327 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.009</radius>
+              <length>0.105</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="parts_bin">
+      <static>true</static>
+      <pose>-0.17 0.2 0.02 0 0 0</pose>
+      <link name="body">
+        <visual name="parts_bin_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.12 0.1 0.04</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="parts_bin_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.12 0.1 0.04</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="parts_bin_visual_1">
+          <pose>0 0.047 0.04 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.12 0.008 0.045</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="parts_bin_collision_1">
+          <pose>0 0.047 0.04 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.12 0.008 0.045</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="parts_bin_visual_2">
+          <pose>-0.056 0 0.04 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008 0.1 0.045</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.96 .32 .045 1</diffuse>
+            <ambient>.96 .32 .045 1</ambient>
+          </material>
+        </visual>
+        <collision name="parts_bin_collision_2">
+          <pose>-0.056 0 0.04 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.008 0.1 0.045</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="screw_tool">
+      <static>true</static>
+      <pose>0.39 0.07 0.13 0 0 0</pose>
+      <link name="body">
+        <visual name="screw_tool_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.035 0.26</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <collision name="screw_tool_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.035 0.26</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="screw_tool_visual_1">
+          <pose>-0.03 0 0.075 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.012</radius>
+              <length>0.075</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <diffuse>.55 .60 .63 1</diffuse>
+            <ambient>.55 .60 .63 1</ambient>
+          </material>
+        </visual>
+        <collision name="screw_tool_collision_1">
+          <pose>-0.03 0 0.075 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.012</radius>
+              <length>0.075</length>
+            </cylinder>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="pcb">
+      <static>false</static>
+      <pose>0.235 -0.18 0.08 0 0 0</pose>
+      <link name="body">
+        <visual name="pcb_visual_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.054 0.03 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.035 .46 .24 1</diffuse>
+            <ambient>.035 .46 .24 1</ambient>
+          </material>
+        </visual>
+        <collision name="pcb_collision_0">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.054 0.03 0.006</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="pcb_visual_1">
+          <pose>-0.014 0 0.004 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.009 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="pcb_visual_2">
+          <pose>0 0 0.004 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.009 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <visual name="pcb_visual_3">
+          <pose>0.014 0 0.004 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.012 0.009 0.003</size>
+            </box>
+          </geometry>
+          <material>
+            <diffuse>.095 .12 .15 1</diffuse>
+            <ambient>.095 .12 .15 1</ambient>
+          </material>
+        </visual>
+        <sensor name="pcb_contact" type="contact">
+          <contact>
+            <collision>pcb_collision_0</collision>
+          </contact>
+          <always_on>true</always_on>
+        </sensor>
+        <inertial>
+          <mass>0.012</mass>
+          <inertia>
+            <ixx>9.36e-07</ixx>
+            <iyy>2.952e-06</iyy>
+            <izz>3.8159999999999995e-06</izz>
+          </inertia>
+        </inertial>
+      </link>
+    </model>
+    <plugin filename="libc3_plant.so" name="c3::Plant" />
+  </world>
+</sdf>

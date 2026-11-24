@@ -1,0 +1,35 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Global Options:
+    Fixed Frame: world
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 0.1
+    - Class: moveit_rviz_plugin/PlanningScene
+      Name: Collision scene
+      Enabled: true
+      Planning Scene Topic: /monitored_planning_scene
+      Robot Description: robot_description
+      Scene Robot:
+        Show Robot Visual: true
+    - Class: moveit_rviz_plugin/Trajectory
+      Name: Planned path
+      Enabled: true
+      Trajectory Topic: /display_planned_path
+      Robot Description: robot_description
+    - Class: rviz_default_plugins/Marker
+      Name: Process state
+      Enabled: true
+      Marker Topic:
+        Value: /c3/label
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 1.35
+      Pitch: 0.43
+      Yaw: 0.85
+      Focal Point: {X: 0.14, Y: 0, Z: 0.1}

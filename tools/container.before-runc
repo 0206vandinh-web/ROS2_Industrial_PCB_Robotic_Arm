@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -eu
+cd "$(dirname "$0")/.."
+name=c3-harmonic
+if ! podman image exists localhost/c3-workcell:humble; then
+ podman build -t localhost/c3-workcell:humble -f Containerfile .
+fi
+if ! podman container exists "$name"; then
+ mkdir -p "$HOME/.local/share/c3-workcell-home"
+ args=(--userns=keep-id --network=host --ipc=private --shm-size=512m -v "$PWD:$PWD" -w "$PWD"
+    -v "$HOME/.local/share/c3-workcell-home:$HOME" -e "HOME=$HOME" -e "DISPLAY=${DISPLAY:-:0}"
+    -e QT_X11_NO_MITSHM=1 -e LIBGL_ALWAYS_SOFTWARE=1 -e "ROS_DOMAIN_ID=46" -e ROS_LOCALHOST_ONLY=1 -e GZ_PARTITION=c3_arm_wsl)
+ if [[ -d /tmp/.X11-unix ]]; then args+=(-v /tmp/.X11-unix:/tmp/.X11-unix:ro); fi
+ podman run -d --name "$name" "${args[@]}" localhost/c3-workcell:humble sleep infinity >/dev/null
+else
+ podman start "$name" >/dev/null
+fi
+podman exec "$name" gz sim --versions

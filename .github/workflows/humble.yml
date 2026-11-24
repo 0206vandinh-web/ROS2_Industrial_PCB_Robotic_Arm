@@ -1,0 +1,21 @@
+name: Humble-Harmonic
+on: [push, pull_request]
+jobs:
+  cell:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -f Containerfile -t c3 .
+      - name: Build and headless factory cycle
+        run: |
+          docker run --rm -v "$PWD:/ws" -w /ws c3 bash -c 'set -eo pipefail
+          source tools/env.bash
+          python3 tools/smoke.py
+          colcon build --event-handlers console_direct+
+          source install/local_setup.bash
+          ros2 launch c3_cell cell.launch.py > /tmp/c3.log 2>&1 &
+          trap "tail -80 /tmp/c3.log" EXIT
+          timeout 90 ros2 topic echo /c3/rx --once > /dev/null
+          timeout 30 ros2 service call /c3/auto std_srvs/srv/Trigger "{}" | tee /tmp/request
+          grep -q "success=True" /tmp/request
+          timeout 300 bash -c "until grep -q DONE ~/.ros/c3_arm/run-*.jsonl; do sleep 2; done"'

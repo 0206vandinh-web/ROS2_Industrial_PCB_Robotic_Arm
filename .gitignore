@@ -1,0 +1,35 @@
+build/
+log/
+install/
+__pycache__/
+*.pyc
+
+# ROS2 build output
+build/
+install/
+log/
+
+# Python cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Temporary files
+*.tmp
+*.swp
+*.log
+
+# Local credentials
+.env
+.env.local
+*.pem
+*.key
+
+# IDE
+.idea/
+
+# Container storage
+*.tar
+*.tar.gz
+*.zip
+

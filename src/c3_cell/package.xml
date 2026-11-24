@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<package format="3"><name>c3_cell</name><version>0.2.0</version><description>PCB assembly six-axis simulation and controller interface</description><maintainer email="maintainer@example.com">Workcell maintainers</maintainer><license>Apache-2.0</license>
+<buildtool_depend>ament_cmake</buildtool_depend>
+<depend>rclcpp</depend><depend>sensor_msgs</depend><depend>geometry_msgs</depend><depend>std_msgs</depend><depend>rosgraph_msgs</depend>
+<exec_depend>rclpy</exec_depend><exec_depend>moveit_ros_move_group</exec_depend><exec_depend>moveit_planners_ompl</exec_depend><exec_depend>moveit_kinematics</exec_depend><exec_depend>moveit_msgs</exec_depend><exec_depend>moveit_ros_visualization</exec_depend><exec_depend>shape_msgs</exec_depend><exec_depend>std_srvs</exec_depend><exec_depend>visualization_msgs</exec_depend><exec_depend>trajectory_msgs</exec_depend><exec_depend>robot_state_publisher</exec_depend><exec_depend>launch_ros</exec_depend><exec_depend>ament_index_python</exec_depend><exec_depend>python3-scipy</exec_depend><exec_depend>python3-numpy</exec_depend>
+<export><build_type>ament_cmake</build_type></export></package>

@@ -1,0 +1,22 @@
+<robot name="c3_arm">
+  <group name="arm">
+    <chain base_link="base" tip_link="tcp" />
+  </group>
+  <disable_collisions link1="base" link2="l1" reason="Mechanical assembly" />
+  <disable_collisions link1="base" link2="world" reason="Mechanical assembly" />
+  <disable_collisions link1="camera_mount" link2="l6" reason="Mechanical assembly" />
+  <disable_collisions link1="l1" link2="l2" reason="Mechanical assembly" />
+  <disable_collisions link1="l2" link2="l3" reason="Mechanical assembly" />
+  <disable_collisions link1="l3" link2="l4" reason="Mechanical assembly" />
+  <disable_collisions link1="l3" link2="l5" reason="Mechanical assembly" />
+  <disable_collisions link1="l3" link2="l6" reason="Mechanical assembly" />
+  <disable_collisions link1="l4" link2="l5" reason="Mechanical assembly" />
+  <disable_collisions link1="l4" link2="l6" reason="Mechanical assembly" />
+  <disable_collisions link1="l5" link2="l6" reason="Mechanical assembly" />
+  <disable_collisions link1="l5" link2="tcp" reason="Mechanical assembly" />
+  <disable_collisions link1="l6" link2="left" reason="Mechanical assembly" />
+  <disable_collisions link1="l6" link2="right" reason="Mechanical assembly" />
+  <disable_collisions link1="l6" link2="tcp" reason="Mechanical assembly" />
+  <disable_collisions link1="left" link2="tcp" reason="Mechanical assembly" />
+  <disable_collisions link1="right" link2="tcp" reason="Mechanical assembly" />
+</robot>
